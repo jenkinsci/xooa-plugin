@@ -1,0 +1,37 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:st="jelly:stapler">
+	<l:layout title="App Upgrade Info">
+		<l:side-panel> 
+            <st:include page="sidepanel.jelly" it="${it.run}" optional="true" /> 
+        </l:side-panel> 
+	    <l:main-panel>
+	    	<h3> 
+	            Name: ${it.name} 
+	        </h3>
+	        <p> 
+	            App Version: ${it.appVersion} 
+	        </p> 
+	        <p> 
+	            App Id: ${it.appId} 
+	        </p>
+	        <p> 
+	            Id: ${it.id} 
+	        </p>
+	        <p> 
+	            Description: ${it.description} 
+	        </p>
+	        <p> 
+	            Network: ${it.network} 
+	        </p>
+	        <p> 
+	            Language: ${it.language} 
+	        </p>
+	        <p> 
+	            Created At: ${it.createdAt} 
+	        </p>
+	        <p> 
+	            Updated At: ${it.updatedAt} 
+	        </p>
+	    </l:main-panel>
+	</l:layout>
+</j:jelly>
