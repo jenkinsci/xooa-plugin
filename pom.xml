@@ -10,7 +10,7 @@
 		<relativePath />
 	</parent>
 	<groupId>io.jenkins.plugins</groupId>
-	<artifactId>xooa-jenkins</artifactId>
+	<artifactId>xooa</artifactId>
 	<version>0.0.1</version>
 	<packaging>hpi</packaging>
 	<properties>
@@ -24,8 +24,8 @@
 			version used by the plugin.. ~ stapler-plugin.version: The Stapler Maven 
 			plugin version required by the plugin. -->
 	</properties>
-	<name>Xooa Jenkins</name>
-	<description>Xooa App Management Plugin</description>
+	<name>Xooa</name>
+	<description>This plugin is a build step which will help user to automatically update the blockchain application on the Xooa blockchain network upon every new build.</description>
 	<!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for 
 		the applicable one if needed. -->
 	<licenses>
