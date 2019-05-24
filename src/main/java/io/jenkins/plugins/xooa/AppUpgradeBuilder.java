@@ -45,7 +45,6 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 
 	private final String name;
 	private final String appId;
-	private boolean useFrench;
 	private String deploymentToken;
 	private String endPoint = "https://api.xooa.com/deployment/v1/apps/";
 
@@ -63,14 +62,6 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 		return appId;
 	}
 
-	public boolean isUseFrench() {
-		return useFrench;
-	}
-
-	@DataBoundSetter
-	public void setUseFrench(boolean useFrench) {
-		this.useFrench = useFrench;
-	}
 
 	@Override
 	public void perform(Run<?, ?> run, FilePath workspace, Launcher launcher, TaskListener listener)
