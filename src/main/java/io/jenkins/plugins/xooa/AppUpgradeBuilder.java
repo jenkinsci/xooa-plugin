@@ -1,7 +1,6 @@
 package io.jenkins.plugins.xooa;
 
 import hudson.Launcher;
-
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.util.FormValidation;
@@ -10,11 +9,12 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.tasks.Builder;
 import hudson.tasks.BuildStepDescriptor;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
+
 import org.zeroturnaround.zip.ZipUtil;
-import org.apache.commons.io.Charsets;
-import org.apache.http.Header;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
@@ -29,16 +29,13 @@ import org.apache.http.util.EntityUtils;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import jenkins.tasks.SimpleBuildStep;
 import org.jenkinsci.Symbol;
 import org.json.JSONObject;
-import org.kohsuke.stapler.DataBoundSetter;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
 
 public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
@@ -66,23 +63,14 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 	@Override
 	public void perform(Run<?, ?> run, FilePath workspace, Launcher launcher, TaskListener listener)
 			throws InterruptedException, IOException {
-		System.out.println(
-				"Smart contract folder provided is: " + new FilePath(new File(workspace.toString() + "/" + name)));
 		GlobConfig config = new GlobConfig();
 		deploymentToken = config.getDeploymentToken();
-//		System.out.println("deployment token in perform: " + deploymentToken);
-		System.out.println("Endpoint: " + endPoint);
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 
 		HttpGet validateAppIdRequest = new HttpGet(endPoint + appId);
 		validateAppIdRequest.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + deploymentToken);
-
-		// Send the request; It will immediately return the response in HttpResponse
-		// object
 		HttpResponse appDetailsResp = httpClient.execute(validateAppIdRequest);
-
-		// verify the valid error code first
 		int appDetailsStatusCode = appDetailsResp.getStatusLine().getStatusCode();
 		System.out.println("App details status code: " + appDetailsStatusCode);
 		listener.getLogger().println("App details status code: " + appDetailsStatusCode);
@@ -118,15 +106,7 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 			HttpEntity multipart = builder.build();
 			uploadFile.setEntity(multipart);
 			CloseableHttpResponse response = httpClient.execute(uploadFile);
-//    	HttpEntity responseEntity = response.getEntity();
 			HttpEntity entity = response.getEntity();
-//			Header encodingHeader = entity.getContentEncoding();
-
-			// you need to know the encoding to parse correctly
-//    	Charset encoding = encodingHeader == null ? StandardCharsets.UTF_8 : 
-//			Charsets.toCharset(encodingHeader.getValue());
-
-			// use org.apache.http.util.EntityUtils to read json as string
 			String json = EntityUtils.toString(entity, StandardCharsets.UTF_8);
 
 			JSONObject o = new JSONObject(json);
@@ -142,19 +122,12 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 					i++;
 					HttpGet getRequest = new HttpGet(queryUrl);
 					getRequest.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + deploymentToken);
-
-					// Send the request; It will immediately return the response in HttpResponse
-					// object
 					HttpResponse resp = httpClient.execute(getRequest);
-
-					// verify the valid error code first
 					statusCode = resp.getStatusLine().getStatusCode();
 					System.out.println("Polling API status code: " + statusCode);
 					listener.getLogger().println("Polling API status code: " + statusCode);
 					HttpEntity httpEntity = resp.getEntity();
 					String apiOutput = EntityUtils.toString(httpEntity);
-
-					// Lets see what we got from API
 					System.out.println(apiOutput);
 					listener.getLogger().println("Upgrade step details: " + apiOutput);
 					if (statusCode == 200) {
@@ -200,24 +173,20 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 			if(fin !=null) {
 				fin.close();
 			}
-			throw th;
-			
+			throw th;			
 		}
-//    	run.addAction(new AppUpgradeAction(appId));
 
 	}
 
-	@Symbol("greet")
+	@Symbol("xooa")
 	@Extension
 	public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
 
 		public FormValidation doCheckName(@QueryParameter String value) throws IOException, ServletException {
-			System.out.println("App folder name is: " + value);
 			return FormValidation.ok();
 		}
 
 		public FormValidation doCheckAppId(@QueryParameter String value) throws IOException, ServletException {
-			System.out.println("App Id is: " + value);
 			return FormValidation.ok();
 		}
 
@@ -230,7 +199,5 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 		public String getDisplayName() {
 			return "Xooa Upgrade Step";
 		}
-
 	}
-
 }

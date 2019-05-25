@@ -1,6 +1,5 @@
 package io.jenkins.plugins.xooa;
 
-import hudson.model.Action;
 import hudson.model.Run;
 import jenkins.model.RunAction2;
 
@@ -8,7 +7,7 @@ public class AppUpgradeAction implements RunAction2 {
 	
 	private String appId, id, name, description, appVersion, network, language, createdAt, updatedAt;
 	
-	private transient Run run; 
+	private transient Run<?, ?> run; 
 
     @Override
     public void onAttached(Run<?, ?> run) {
@@ -20,7 +19,7 @@ public class AppUpgradeAction implements RunAction2 {
         this.run = run; 
     }
 
-    public Run getRun() { 
+    public Run<?, ?> getRun() { 
         return run;
     }
     
@@ -35,13 +34,6 @@ public class AppUpgradeAction implements RunAction2 {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-    
-    
-
-//    public AppUpgradeAction(String appId2, String id2, String name2, String description2, String appVersion2,
-//			String network2, String language2, String createdAt2, String updatedAt2) {
-//		// TODO Auto-generated constructor stub
-//	}
 
 	public String getAppId() {
         return appId;

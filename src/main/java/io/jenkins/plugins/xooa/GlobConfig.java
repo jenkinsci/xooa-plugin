@@ -22,7 +22,6 @@ public class GlobConfig extends GlobalConfiguration {
     private String deploymentToken;
 
     public GlobConfig() {
-        // When Jenkins is restarted, load any saved configuration from disk.
         load();
     }
 
