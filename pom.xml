@@ -132,6 +132,8 @@
 	</pluginRepositories>
 
   <scm>
-    <tag>xooa-0.0.3</tag>
+  	<connection>scm:git:ssh://github.com/jenkinsci/xooa-plugin.git</connection>
+  	<developerConnection>scm:git:ssh://git@github.com/jenkinsci/xooa-plugin.git</developerConnection>
+  	<url>https://github.com/jenkinsci/xooa-plugin</url>
   </scm>
 </project>
