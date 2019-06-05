@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>io.jenkins.plugins</groupId>
 	<artifactId>xooa</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 	<properties>
 		<!-- Baseline Jenkins version you use to build the plugin. Users must have 
@@ -26,6 +26,11 @@
 	</properties>
 	<name>Xooa</name>
 	<description>This plugin is a build step which will help user to automatically update the blockchain application on the Xooa blockchain network upon every new build.</description>
+	<scm>
+		<connection>scm:git:ssh://github.com/jenkinsci/xooa-plugin.git</connection>
+  		<developerConnection>scm:git:ssh://git@github.com/jenkinsci/xooa-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/xooa-plugin</url>
+	</scm>
 	<!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for 
 		the applicable one if needed. -->
 	<licenses>
@@ -132,4 +137,5 @@
 			<url>https://repo.jenkins-ci.org/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
+	
 </project>
