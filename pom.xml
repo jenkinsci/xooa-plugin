@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>io.jenkins.plugins</groupId>
 	<artifactId>xooa</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 	<properties>
 		<!-- Baseline Jenkins version you use to build the plugin. Users must have 
@@ -36,7 +36,7 @@
         <connection>scm:git:ssh://github.com/jenkinsci/xooa-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jenkinsci/xooa-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/xooa-plugin</url>
-    <tag>xooa-0.0.6</tag>
+    <tag>HEAD</tag>
   </scm>
 
 	<dependencies>
