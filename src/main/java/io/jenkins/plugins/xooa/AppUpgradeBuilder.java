@@ -59,7 +59,6 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 		return appId;
 	}
 
-
 	@Override
 	public void perform(Run<?, ?> run, FilePath workspace, Launcher launcher, TaskListener listener)
 			throws InterruptedException, IOException {
@@ -75,7 +74,7 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 		System.out.println("App details status code: " + appDetailsStatusCode);
 		listener.getLogger().println("App details status code: " + appDetailsStatusCode);
 		if (appDetailsStatusCode != 200) {
-			if(appDetailsStatusCode== 401) {
+			if (appDetailsStatusCode == 401) {
 				throw new RuntimeException("Unauthorized. Please provide valid deployment token.");
 			}
 			throw new RuntimeException("Invalid app. Please provide valid App Id.");
@@ -157,23 +156,23 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 				}
 
 				if (statusCode != 200 && statusCode != 202) {
-					if(fin !=null) {
+					if (fin != null) {
 						fin.close();
 					}
 					throw new RuntimeException("Failed with HTTP error code : " + statusCode);
 				}
 
 			} else {
-				if(fin !=null) {
+				if (fin != null) {
 					fin.close();
 				}
 				throw new RuntimeException("Failed with HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 		} catch (Throwable th) {
-			if(fin !=null) {
+			if (fin != null) {
 				fin.close();
 			}
-			throw th;			
+			throw th;
 		}
 
 	}
@@ -197,7 +196,7 @@ public class AppUpgradeBuilder extends Builder implements SimpleBuildStep {
 
 		@Override
 		public String getDisplayName() {
-			return "Xooa Upgrade Step";
+			return "Upgrade Xooa app";
 		}
 	}
 }

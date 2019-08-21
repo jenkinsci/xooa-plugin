@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
@@ -23,7 +25,7 @@
 			plugin version required by the plugin. -->
 	</properties>
 	<name>Xooa</name>
-	<description>This plugin is a build step which will help user to automatically update the blockchain application on the Xooa blockchain network upon every new build.</description>
+	<description>Xooa plugin allows user to automatically upgrade a blockchain application deployed on Xooa Platform. It can be added as a build pipeline step. The plugin supports apps deployed on both Hyperledger fabric and Ethereum networks.</description>
 	<!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for 
 		the applicable one if needed. -->
 	<licenses>
@@ -32,17 +34,14 @@
 			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
-  <scm>
-        <connection>scm:git:ssh://github.com/jenkinsci/xooa-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/xooa-plugin.git</developerConnection>
-        <url>https://github.com/jenkinsci/xooa-plugin</url>
-    <tag>HEAD</tag>
-  </scm>
+	<scm>
+		<connection>scm:git:ssh://github.com/jenkinsci/xooa-plugin.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/jenkinsci/xooa-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/xooa-plugin</url>
+		<tag>HEAD</tag>
+	</scm>
 
 	<dependencies>
-
-
-
 		<dependency>
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>structs</artifactId>
@@ -97,24 +96,33 @@
 			<version>4.5.6</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.httpcomponents</groupId>
-		    <artifactId>httpmime</artifactId>
-		    <version>4.3.1</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.3.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.zeroturnaround</groupId>
-		    <artifactId>zt-zip</artifactId>
-		    <version>1.13</version>
-		    <type>jar</type>
+			<groupId>org.zeroturnaround</groupId>
+			<artifactId>zt-zip</artifactId>
+			<version>1.13</version>
+			<type>jar</type>
 		</dependency>
 		<dependency>
-		    <groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20180130</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
 		</dependency>
 
 
 	</dependencies>
+
+	<url>https://wiki.jenkins.io/display/JENKINS/Xooa</url>
+	<developers>
+		<developer>
+			<id>vinayxooa</id>
+			<name>Vinay Bagul</name>
+			<email>vinay.bagul@xooa.com</email>
+		</developer>
+	</developers>
 
 
 	<!-- If you want this to appear on the wiki page: <developers> <developer> 
